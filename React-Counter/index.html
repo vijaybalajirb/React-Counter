@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    <!-- Babel -->
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- custom-styles -->
+    <link rel="spreadsheet" href="style.css">
+</head>
+<body>
+    <!-- Bootstrap-Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <div id=root class="container">
+    </div>
+
+    <!-- script -->
+    <script type="text/babel">
+
+    let App=()=>{
+
+        const [count,setcount]=React.useState([0])
+
+        const increase=(index)=>{setcount(count.map((ele,ind)=>ind===index?ele+1:ele))}
+        const decrease=(index)=>{setcount(count.map((ele,ind)=>ind===index?ele-1:ele))}
+        const addCounter=()=>{setcount(count.concat([0]))};
+        const deleteCounter=(index)=>{setcount(count.filter((ele, ind) => ind !== index))}
+
+        return(
+            <div className="container">
+                <br/>
+                <h1 align="center">Counter</h1><br/>
+                <button className="btn btn-primary btn-lg btn-block" onClick={addCounter}><b>Add Counter</b></button>
+                <br/>
+            
+            {count.map((element,index)=>{
+                return(
+                    <div>
+                    <h1 align="center">{element}</h1> 
+
+                  <h4 align="center"> <button className="btn btn-primary btn-lg" onClick={()=>increase(index)}>Increment</button></h4>
+                    <br/>
+                    <br/>
+                    <h4 align="center"> <button className="btn btn-primary btn-lg" onClick={()=>decrease(index)}>Decrement</button></h4>
+                    <br/>
+                    <br/>
+                    <h4 align="center"> <button className="btn btn-primary btn-lg" onClick={()=>deleteCounter(index)}>Delete Counter</button></h4>
+                    <br/>
+
+                    </div>
+                    
+
+                )
+            })}
+
+
+            </div>
+        )
+    }
+
+    ReactDOM.render(<App/>,root)
+    
+
+
+
+
+    </script>
+    </body>
+    </html>
